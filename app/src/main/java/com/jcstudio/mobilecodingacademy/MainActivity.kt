@@ -3,6 +3,7 @@ package com.jcstudio.mobilecodingacademy
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import com.jcstudio.mobilecodingacademy.learning.concurrency.presentation.screen.ConcurrencyFeatureScreen
 import com.jcstudio.mobilecodingacademy.learning.concurrency.presentation.screen.ConcurrencyLabScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,7 +31,7 @@ class MainActivity : ComponentActivity() {
 //                viewModel = viewModel
 //            )
 //            AppNavigation()
-            ConcurrencyLabScreen()
+            ConcurrencyFeatureScreen()
         }
     }
 }

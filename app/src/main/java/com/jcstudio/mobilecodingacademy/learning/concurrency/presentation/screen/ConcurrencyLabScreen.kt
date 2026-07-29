@@ -25,12 +25,14 @@ import com.jcstudio.mobilecodingacademy.learning.concurrency.presentation.viewmo
 
 @Composable
 fun ConcurrencyLabScreen(
+    modifier: Modifier = Modifier,
     viewModel: ConcurrencyLabViewModel = viewModel(),
 ) {
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     ConcurrencyLabContent(
+        modifier = modifier,
         uiState = uiState,
         onRunClick = viewModel::runRaceConditionExperiment
     )
@@ -38,11 +40,12 @@ fun ConcurrencyLabScreen(
 
 @Composable
 fun ConcurrencyLabContent(
+    modifier: Modifier = Modifier,
     uiState: ConcurrencyLabUiState,
     onRunClick: () -> Unit,
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
