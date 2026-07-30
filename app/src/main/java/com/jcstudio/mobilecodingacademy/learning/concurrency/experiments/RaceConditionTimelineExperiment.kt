@@ -1,17 +1,19 @@
 package com.jcstudio.mobilecodingacademy.learning.concurrency.experiments
 
 import com.jcstudio.mobilecodingacademy.learning.concurrency.model.CoroutineId
-import com.jcstudio.mobilecodingacademy.learning.concurrency.model.RaceConditionTimelineStep
+import com.jcstudio.mobilecodingacademy.learning.concurrency.model.TimelineStep
 import com.jcstudio.mobilecodingacademy.learning.concurrency.model.TimelineOperation
 
-class RaceConditionTimelineExperiment {
+class RaceConditionTimelineExperiment: TimelineExperiment {
+    override val title: String
+        get() = "Race Condition"
 
-    fun getSteps(): List<RaceConditionTimelineStep> {
+    override fun getSteps(): List<TimelineStep> {
         return listOf(
-            RaceConditionTimelineStep(
+            TimelineStep(
                 stepNumber = 1,
                 activeCoroutine = CoroutineId.A,
-                operation = TimelineOperation.WRITE,
+                operation = TimelineOperation.READ,
                 sharedCounterValue = 0,
                 coroutineALocalValue = 0,
                 coroutineBLocalValue = null,
@@ -21,10 +23,10 @@ class RaceConditionTimelineExperiment {
                     The shared counter has not changed yet.
                 """.trimIndent()
             ),
-            RaceConditionTimelineStep(
+            TimelineStep(
                 stepNumber = 2,
                 activeCoroutine = CoroutineId.B,
-                operation = TimelineOperation.WRITE,
+                operation = TimelineOperation.READ,
                 sharedCounterValue = 0,
                 coroutineALocalValue = 0,
                 coroutineBLocalValue = 0,
@@ -34,7 +36,7 @@ class RaceConditionTimelineExperiment {
                     The shared counter has not changed yet.
                 """.trimIndent()
             ),
-            RaceConditionTimelineStep(
+            TimelineStep(
                 stepNumber = 3,
                 activeCoroutine = CoroutineId.A,
                 operation = TimelineOperation.MODIFY,
@@ -47,7 +49,7 @@ class RaceConditionTimelineExperiment {
                     The shared counter is still 0 because nothing has been written yet.
                 """.trimIndent()
             ),
-            RaceConditionTimelineStep(
+            TimelineStep(
                 stepNumber = 4,
                 activeCoroutine = CoroutineId.B,
                 operation = TimelineOperation.MODIFY,
@@ -60,7 +62,7 @@ class RaceConditionTimelineExperiment {
                     The shared counter is still 0 because nothing has been written yet.
                 """.trimIndent()
             ),
-            RaceConditionTimelineStep(
+            TimelineStep(
                 stepNumber = 5,
                 activeCoroutine = CoroutineId.A,
                 operation = TimelineOperation.WRITE,
@@ -73,7 +75,7 @@ class RaceConditionTimelineExperiment {
                     The shared counter changes from 0 to 1.
                 """.trimIndent()
             ),
-            RaceConditionTimelineStep(
+            TimelineStep(
                 stepNumber = 6,
                 activeCoroutine = CoroutineId.B,
                 operation = TimelineOperation.WRITE,

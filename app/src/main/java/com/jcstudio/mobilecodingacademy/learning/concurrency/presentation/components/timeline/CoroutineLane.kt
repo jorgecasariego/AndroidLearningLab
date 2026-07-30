@@ -10,14 +10,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.jcstudio.mobilecodingacademy.learning.concurrency.model.CoroutineId
-import com.jcstudio.mobilecodingacademy.learning.concurrency.model.RaceConditionTimelineStep
+import com.jcstudio.mobilecodingacademy.learning.concurrency.model.TimelineStep
 import com.jcstudio.mobilecodingacademy.learning.concurrency.model.TimelineOperation
 import com.jcstudio.mobilecodingacademy.learning.concurrency.presentation.model.TimelineOperationStatus
 
 @Composable
 fun CoroutineLane(
     coroutineId: CoroutineId,
-    currentStep: RaceConditionTimelineStep,
+    currentStep: TimelineStep,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -59,7 +59,7 @@ fun CoroutineLane(
 private fun getOperationStatus(
     operation: TimelineOperation,
     coroutineId: CoroutineId,
-    currentStep: RaceConditionTimelineStep,
+    currentStep: TimelineStep,
 ): TimelineOperationStatus {
 
     val operationStepNumber = when (coroutineId to operation) {

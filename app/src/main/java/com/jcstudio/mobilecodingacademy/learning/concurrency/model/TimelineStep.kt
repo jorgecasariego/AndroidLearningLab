@@ -11,7 +11,7 @@ enum class TimelineOperation {
     WRITE
 }
 
-data class RaceConditionTimelineStep(
+data class TimelineStep(
     val stepNumber: Int,
     val activeCoroutine: CoroutineId,
     val operation: TimelineOperation,

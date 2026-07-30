@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jcstudio.mobilecodingacademy.learning.concurrency.model.CoroutineId
+import com.jcstudio.mobilecodingacademy.learning.concurrency.model.TimelineOperation
 import com.jcstudio.mobilecodingacademy.learning.concurrency.presentation.components.timeline.CoroutineLane
 import com.jcstudio.mobilecodingacademy.learning.concurrency.presentation.components.timeline.SharedCounterCard
 import com.jcstudio.mobilecodingacademy.learning.concurrency.presentation.state.RaceConditionTimelineUiState
@@ -97,11 +98,19 @@ fun RaceConditionTimelineContent(
             )
         }
 
+        val activeWriter: CoroutineId? =
+            if (currentStep.operation == TimelineOperation.WRITE) {
+                currentStep.activeCoroutine
+            } else {
+                null
+            }
+
         SharedCounterCard(
             sharedCounterValue = currentStep.sharedCounterValue,
             coroutineALocalValue = currentStep.coroutineALocalValue,
             coroutineBLocalValue = currentStep.coroutineBLocalValue,
-            lostUpdateDetected = currentStep.lostUpdateDetected
+            lostUpdateDetected = currentStep.lostUpdateDetected,
+            activeWriter = activeWriter
         )
 
         Text(

@@ -1,12 +1,12 @@
 package com.jcstudio.mobilecodingacademy.learning.concurrency.presentation.state
 
-import com.jcstudio.mobilecodingacademy.learning.concurrency.model.RaceConditionTimelineStep
+import com.jcstudio.mobilecodingacademy.learning.concurrency.model.TimelineStep
 
 data class RaceConditionTimelineUiState(
-    val steps: List<RaceConditionTimelineStep> = emptyList(),
+    val steps: List<TimelineStep> = emptyList(),
     val currentStepIndex: Int = 0
 ) {
-    val currentStep: RaceConditionTimelineStep?
+    val currentStep: TimelineStep?
         get() = steps.getOrNull(currentStepIndex)
 
     val totalSteps: Int

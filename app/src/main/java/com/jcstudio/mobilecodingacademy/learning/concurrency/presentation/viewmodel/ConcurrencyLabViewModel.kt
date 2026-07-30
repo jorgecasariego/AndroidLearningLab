@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jcstudio.mobilecodingacademy.learning.concurrency.experiments.RaceConditionExperiment
 import com.jcstudio.mobilecodingacademy.learning.concurrency.experiments.RaceConditionTimelineExperiment
+import com.jcstudio.mobilecodingacademy.learning.concurrency.experiments.TimelineExperiment
 import com.jcstudio.mobilecodingacademy.learning.concurrency.model.ConcurrencyLog
 import com.jcstudio.mobilecodingacademy.learning.concurrency.presentation.state.ConcurrencyLabUiState
 import com.jcstudio.mobilecodingacademy.learning.concurrency.presentation.state.RaceConditionTimelineUiState
@@ -16,14 +17,14 @@ import kotlinx.coroutines.launch
 class ConcurrencyLabViewModel : ViewModel() {
     private val raceConditionExperiment = RaceConditionExperiment()
 
-    private val raceConditionTimelineExperiment = RaceConditionTimelineExperiment()
+    private val experiment: TimelineExperiment = RaceConditionTimelineExperiment()
 
     private val _uiState = MutableStateFlow(ConcurrencyLabUiState())
     val uiState: StateFlow<ConcurrencyLabUiState> = _uiState.asStateFlow()
 
     private val _timelineUiState = MutableStateFlow(
         RaceConditionTimelineUiState(
-            steps = raceConditionTimelineExperiment.getSteps()
+            steps = experiment.getSteps()
         )
     )
 
